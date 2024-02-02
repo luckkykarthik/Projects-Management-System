@@ -1,0 +1,41 @@
+<div class="form-container d-flex justify-content-center align-items-center">
+  <form #d="ngForm" (ngSubmit)="getData(d)">
+    <h3>Add Faculties for Project guides</h3>
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" name="name" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+      <label>Image:</label>
+      <input type="file" name="image" class="form-control" accept="image/*" ngModel>
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email"  name="email" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+      <label>Department</label>
+      <select name="department"  class="form-control" ngModel>
+        <option value="CSE Department">CSE Department</option>
+        <option value="ECE Department">ECE Department</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label>Mobile:</label>
+      <input type="tel" name="mobile" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+      <label>Domains:</label>
+      <div>
+        <label><input type="checkbox" name="domain" value="WEB" [(ngModel)]="DomainValues.WEB"> WEB</label>
+        <label><input type="checkbox" name="domain" value="MAD" [(ngModel)]="DomainValues.MAD"> MAD</label>
+        <label><input type="checkbox" name="domain" value="IPA" [(ngModel)]="DomainValues.IPA"> IPA</label>
+        <label><input type="checkbox" name="domain" value="CC" [(ngModel)]="DomainValues.CC"> CC</label>
+        <label><input type="checkbox" name="domain" value="ML" [(ngModel)]="DomainValues.ML"> ML</label>
+        <label><input type="checkbox" name="domain" value="NS" [(ngModel)]="DomainValues.NS"> NS</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

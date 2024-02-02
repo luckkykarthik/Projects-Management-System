@@ -1,0 +1,40 @@
+<!-- <div class="card-list">
+    <div class="card" *ngFor="let f of fai; let i=index">
+      <div class="card-header">
+        <h3>{{f.Name}}</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><strong>Email:</strong> {{f.Email}}</li>
+          <li><strong>Mobile:</strong> {{f.Mobile}}</li>
+          <li><strong>Category:</strong> {{f.Category}}</li>
+          <li><strong>Domains:</strong> {{f.Domains}}</li>
+          <div class="i"><img #im src="assets/pa.jpg" alt="pa"></div>
+        </ul>
+      </div>
+    </div>
+  </div>
+   -->
+  
+   <div class="card-list">
+    <div class="card" *ngFor="let f of fai; let i=index">
+      <div class="card-header">
+        <h3>{{f.name}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="card-image">
+          <img src={{f.image}} alt="pa">
+        </div>
+        <div class="card-info">
+          
+          <ul>
+            <li><strong>Email:</strong> {{f.email}}</li>
+            <li><strong>Mobile:</strong> {{f.mobile}}</li>
+            <li><strong>Category:</strong> {{f.department}}</li>
+            <li><strong>Domains:</strong> {{f.domains}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  

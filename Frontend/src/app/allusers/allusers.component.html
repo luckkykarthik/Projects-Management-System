@@ -1,0 +1,34 @@
+<!-- <div class="d">
+    <div class="row">
+        <ul *ngFor="let i of users">
+            <li>{{i.id}}</li>
+            <li>{{i.name}}</li>
+            <li>{{i.email}}</li>
+            <li>{{i.role}}</li>
+            <li>{{i.mobile}}</li> 
+        </ul>
+    </div>
+</div> -->
+
+<div class="container">
+    <h2>User Information</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let user of users">
+        <div class="card">
+          <div class="card-icon">
+            <!-- Add your icon here -->
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="card-info">
+            <ul>
+              <li><span class="card-label">ID:</span> {{user.id}}</li>
+              <li><span class="card-label">Name:</span> {{user.name}}</li>
+              <li><span class="card-label">Email:</span> {{user.email}}</li>
+              <li><span class="card-label">Role:</span> {{user.role}}</li>
+              <li><span class="card-label">Mobile:</span> {{user.phone}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

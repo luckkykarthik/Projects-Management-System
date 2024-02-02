@@ -1,0 +1,48 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .card-icon {
+    margin-right: 10px;
+  }
+  
+  .card-icon i {
+    font-size: 24px;
+    color: #333333;
+  }
+  
+  .card-info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card-info ul li {
+    margin-bottom: 5px;
+  }
+  
+  .card-info ul li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .card-label {
+    font-weight: bold;
+  }
+  

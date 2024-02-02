@@ -1,0 +1,64 @@
+<!-- <h1>Hey,Admin You are Welcome</h1>
+<button (click)="allTeachers()">Get Teachers</button>
+<h2>Click down for to see project requests</h2>
+<button (click)="ptr()">Requests</button> -->
+  <div class="container">
+    <h1 class="display-4 text-center mb-4">Hey, Admin! You are Welcome</h1>
+    <div class="text-center">
+      <button class="btn btn-success mr-3" (click)="allTeachers()">Get Teachers</button>
+      <button class="btn btn-warning" (click)="ptr()">Requests</button>
+    </div>
+    <h2 class="text-center mt-5">To see project requests come to top only</h2>
+  </div>
+  <div class="text-center" *ngIf="np && !pr">
+    <h2 class="text-danger font-weight-bold mt-4">No Project Requests</h2>
+  </div>
+  <div class="container" *ngIf="pr">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let user of users">
+          <div class="card">
+            <div class="card-icon">
+              <!-- Add your icon here -->
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="card-info">
+              <ul>
+                <li><span class="card-label">ID:</span> {{user.id}}</li>
+                <li><span class="card-label">Name:</span> {{user.name}}</li>
+                <li><span class="card-label">Email:</span> {{user.email}}</li>
+                <li><span class="card-label">Role:</span> {{user.role}}</li>
+                <li><span class="card-label">Mobile:</span> {{user.phone}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="container" *ngIf="st">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let i of prd">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">ID: {{ i.id }}</h5>
+            <p class="card-text"><strong>Student ID:</strong> {{ i.studentid }}</p>
+            <p class="card-text"><strong>Name:</strong> {{ i.studentname }}</p>
+            <p class="card-text"><strong>Title:</strong> {{ i.title }}</p>
+            <p class="card-text"><strong>Description:</strong> {{ i.description }}</p>
+            <p class="card-text"><strong>AOD:</strong> {{ i.aod }}</p>
+            <p class="card-text"><strong>Faculty:</strong> {{ i.faculty }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6" *ngFor="let user of iptr">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ user.name }}</h5>
+            <button class="btn btn-dark" (click)="getRe(user.id)">Get Requests</button>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>

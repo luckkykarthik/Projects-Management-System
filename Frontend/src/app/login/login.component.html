@@ -1,0 +1,54 @@
+<!-- <form class="login-form" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input class="form-control" type="text" id="username" name="username" [(ngModel)]="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input class="form-control" type="password" id="password" name="password" [(ngModel)]="password">
+    </div>
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-success" type="submit">Login</button>
+      <button class="btn btn-primary" routerLink="/Signup">Register</button>
+    </div>
+  </form> -->
+  <div class="container">
+    <div class="login-container">
+      <div *ngIf="error" class="text-danger font-weight-bold mt-4 text-center">Invalid Credentials</div>
+        <h2 class="text-center">Login</h2>
+        <form #f="ngForm" (ngSubmit)="login()">
+            <!-- <div class="form-group">
+                <label for="username" class="form-control-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" [(ngModel)]="logindata.email">
+            </div> -->
+            <div class="form-group">
+              <label for="username" class="form-control-label">Username</label>
+              <input type="email" id="email" name="email" [(ngModel)]="logindata.email" class="form-control" required #email="ngModel"
+              [ngClass]="{'is-invalid': email.touched && email.invalid}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+              <div *ngIf="email.errors?.['required']">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is required</div>
+               </div>
+               <div *ngIf="email.errors?.['pattern']">
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Enter Valid Email Address.......</div>
+               </div>
+            </div>
+            <!-- <div class="form-group">
+                <label for="password" class="form-control-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" [(ngModel)]="logindata.password">
+            </div> -->
+            <div class="form-group">
+              <label for="password" class="form-control-label">Password</label>
+              <input type="password" id="password" name="password" [(ngModel)]="logindata.password" class="form-control" required
+              ngModel #password="ngModel"  [ngClass]="{'is-invalid':password.touched && password.invalid}">
+              <div *ngIf="password.errors?.['required']">
+                <div class="alert alert-danger" *ngIf="password.touched && password.invalid">password is required</div>
+               </div>
+            </div>
+            <div class="d-flex justify-content-between ">
+                <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Login</button>
+                <button class="btn btn-success" routerLink="/signup">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+  

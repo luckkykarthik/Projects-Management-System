@@ -1,0 +1,223 @@
+<!-- <form (ngSubmit)="register()" method="post">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name">
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" [(ngModel)]="user.gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div>
+      <label for="department">Department:</label>
+      <select id="department" name="department" [(ngModel)]="user.department">
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Civil">Civil</option>
+        <option value="MME">MME</option>
+        <option value="Chemical">Chemical</option>
+      </select>
+    </div>
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" name="role" [(ngModel)]="user.role">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password">
+    </div>
+    <div>
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" [(ngModel)]="user.phone">
+    </div>
+    <div>
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" [(ngModel)]="user.id">
+    </div>
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-success" type="submit">Register</button>
+        <button class="btn btn-primary" routerLink="/Login">Login</button>
+      </div>
+  </form> -->
+
+
+  <form (ngSubmit)="register()" #registrationForm="ngForm">
+    <h3>Registration Form</h3>
+    <div class="form-group">
+      <div class="alert alert-success container" *ngIf="saved">
+        <strong>Details saved successfully</strong>
+      </div>
+      <div *ngIf="emailExists" class="error-container">
+        <div class="error-message">
+          <span class="error-icon">&#x26A0;</span> <!-- Unicode for Warning Sign (⚠) -->
+          <span class="error-text">Email already exists</span>
+        </div>
+      </div>
+      
+      
+      <label for="name">Name:</label> 
+      <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="5" maxlength="30"
+        class="form-control" [ngClass]="{'is-invalid': name.touched && name.invalid}">
+      <div *ngIf="name.errors?.['required']">
+        <div class="alert-danger" *ngIf="name.touched && name.invalid">Full Name is required</div>
+      </div>
+      <div *ngIf="name.errors?.['minlength']">
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">Atleast 5 characters.....</div>
+       </div>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" [(ngModel)]="user.gender" required>
+        <option value="" disabled>Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="department">Department:</label>
+      <select id="department" name="department" [(ngModel)]="user.department" required>
+        <option value="" disabled>Select your department</option>
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Civil">Civil</option>
+        <option value="MME">MME</option>
+        <option value="Chemical">Chemical</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" name="role" [(ngModel)]="user.role" required>
+        <option value="" disabled>Select your role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" class="form-control" required #email="ngModel"
+      [ngClass]="{'is-invalid': email.touched && email.invalid}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+      <div *ngIf="email.errors?.['required']">
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Email is required</div>
+       </div>
+       <div *ngIf="email.errors?.['pattern']">
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">Enter Valid Email Address.......</div>
+       </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" class="form-control" required
+      ngModel #password="ngModel"  [ngClass]="{'is-invalid':password.touched && password.invalid}">
+      <div *ngIf="password.errors?.['required']">
+        <div class="alert alert-danger" *ngIf="password.touched && password.invalid">password is required</div>
+       </div>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" [(ngModel)]="user.phone" class="form-control" required
+      ngModel #phone="ngModel"  [ngClass]="{'is-invalid':phone.touched && phone.invalid}" pattern="[6789][0-9]{9}">
+      <div *ngIf="phone .errors?.['required']">
+        <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">Phone number is required</div>
+       </div>
+       <div *ngIf="phone .errors?.['pattern']">
+        <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">Phone number is not valid ......</div>
+       </div>
+       <!-- <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+        <div *ngIf="phone.errors?.['required']">Phone Number is required</div>
+        <div *ngIf="phone.errors?.['pattern']">Phone Number is Invalid.....</div>
+    </div> -->
+    </div>
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" [(ngModel)]="user.id" class="form-control" ngModel #ID="ngModel" 
+      required [ngClass]="{'is-invalid':ID.touched && ID.invalid}">
+      <div *ngIf="ID.errors?.['required']">
+        <div class="alert alert-danger" *ngIf="ID.touched && ID.invalid">ID is required</div>
+       </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-success" type="submit" [disabled]="registrationForm.invalid">Register</button>
+      <button class="btn btn-primary" routerLink="/login">Login</button>
+    </div>
+  </form>
+  
+
+
+
+  <!-- <form (ngSubmit)="register()" #f="ngForm" class="attractive-form">
+    <h2>Registration Form</h2>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="5" maxlength="30">
+      <div *ngIf="name.touched && name.invalid" class="error-message">Full Name is required and should be between 5 and 30 characters.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" [(ngModel)]="user.gender" required>
+        <option value="" disabled>Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="department">Department:</label>
+      <select id="department" name="department" [(ngModel)]="user.department" required>
+        <option value="" disabled>Select your department</option>
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Civil">Civil</option>
+        <option value="MME">MME</option>
+        <option value="Chemical">Chemical</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" name="role" [(ngModel)]="user.role" required>
+        <option value="" disabled>Select your role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+      <div *ngIf="email.touched && email.invalid" class="error-message">Please enter a valid email address.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" required minlength="8">
+      <div *ngIf="password.touched && password.invalid" class="error-message">Password is required and should be at least 8 characters.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" [(ngModel)]="user.phone" required pattern="[6789][0-9]{9}">
+      <div *ngIf="phone.touched && phone.invalid" class="error-message">Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" [(ngModel)]="user.id" required>
+      <div *ngIf="ID.touched && ID.invalid" class="error-message">ID is required.</div>
+    </div>
+  
+    <button class="btn btn-success" type="submit" [disabled]="f.invalid">Register</button>
+    <button class="btn btn-primary" routerLink="/Login">Login</button>
+  </form> -->
+  

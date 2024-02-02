@@ -1,0 +1,68 @@
+<!-- <div class="project-cards">
+    <mat-card *ngFor="let p of projects" class="project-card">
+      <mat-card-header>
+        <mat-card-title>Project ID: {{ p.id }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Student ID:</strong> {{ p.studentid }}</p>
+        <p><strong>Student Name:</strong> {{ p.studentname }}</p>
+        <p><strong>Title:</strong> {{ p.title }}</p>
+        <p><strong>Description:</strong> {{ p.description }}</p>
+        <p><strong>Area of Development:</strong> {{ p.aod }}</p>
+        <p><strong>Faculty:</strong> {{ p.faculty }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+   -->
+
+   <!-- <div class="project-cards">
+    <mat-card class="project-card" *ngFor="let p of projects">
+      <mat-card-header>
+        <div class="project-id-container">
+          <span class="project-id">Project ID: {{ p.id }}</span>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Student ID:</strong> {{ p.studentid }}</p>
+        <p><strong>Student Name:</strong> {{ p.studentname }}</p>
+        <p><strong>Title:</strong> {{ p.title }}</p>
+        <p><strong>Description:</strong> {{ p.description }}</p>
+        <p><strong>Area of Development:</strong> {{ p.aod }}</p>
+        <p><strong>Faculty:</strong> {{ p.faculty }}</p>
+      </mat-card-content>
+    </mat-card> -->
+  <!-- </div> -->
+
+  <div class="container">
+    <h2>Students Registered Projects </h2>
+    <h2 *ngIf="show" class="text-danger font-weight-bold mt-4">No Registered Projects</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let user of projects">
+        <div class="card">
+          <div class="card-icon">
+            <!-- Add your icon here -->
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="card-info">
+            <ul>
+            <li><span class="card-label">Project ID:</span> {{user.id}}</li>
+              <li><span class="card-label">student ID:</span> {{user.studentid}}</li>
+              <li><span class="card-label"> Student Name:</span> {{user.studentname}}</li>
+              <li><span class="card-label">Title:</span> {{user.title}}</li>
+              <li><span class="card-label">Descrption:</span> {{user.description}}</li>
+              <li><span class="card-label">Area of Development:</span> {{user.aod}}</li>
+              <li><span class="card-label">Faculty:</span> {{user.faculty}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  

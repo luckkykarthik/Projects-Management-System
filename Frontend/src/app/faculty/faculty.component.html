@@ -1,0 +1,53 @@
+<div class="welcome-container">
+  <div class="alert alert-success container" *ngIf="accepted">
+    <strong>Hey You are accepted Student Project Request</strong>
+  </div>
+  <div class="alert alert-danger container" *ngIf="rejected">
+    <strong>You are rejected Student Project Request</strong>
+  </div>
+  <h1>Welcome to Your Dashboard</h1>
+  <p>Hello, User! We're excited to have you here.</p>
+  <div class="button-row">
+    <button class="request-button" (click)="requests()">Project Requests</button>
+    <button class="all-students-button" (click)="allstudents()">Get All Students</button>
+  </div>
+
+  <div class="data-container" *ngIf="pr">
+    <div *ngFor="let i of data;let j=index" class="data-item">
+      <ul>
+        <li><strong>ID:</strong> {{ i.id }}</li>
+        <li><strong>Student ID:</strong> {{ i.studentid }}</li>
+        <li><strong>Name:</strong> {{ i.studentname }}</li>
+        <li><strong>Title:</strong> {{ i.title }}</li>
+        <li><strong>Description:</strong> {{ i.description }}</li>
+        <li><strong>AOD:</strong> {{ i.aod }}</li>
+        <li><strong>Faculty:</strong> {{ i.faculty }}</li>
+      </ul>
+      <div class="buttons">
+        <button class="accept-button" (click)="accept(i,j)">Accept</button>
+        <button class="reject-button" (click)="reject(j,i.id)">Reject</button>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="st">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let user of users">
+        <div class="card">
+          <div class="card-icon">
+            <!-- Add your icon here -->
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="card-info">
+            <ul>
+              <li><span class="card-label">ID:</span> {{user.id}}</li>
+              <li><span class="card-label">Name:</span> {{user.name}}</li>
+              <li><span class="card-label">Email:</span> {{user.email}}</li>
+              <li><span class="card-label">Role:</span> {{user.role}}</li>
+              <li><span class="card-label">Mobile:</span> {{user.phone}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

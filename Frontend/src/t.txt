@@ -1,0 +1,17 @@
+ add(data:any){
+      this.data=data;
+  }
+  constructor(user:UserService){
+  this.fai.push(user.data);
+}
+o:any={}
+  constructor(private user:UserService){
+  }
+  getdata(d:any){
+    this.o=d.value
+    const selectedCheckboxes = Object.keys(this.DomainValues)
+      .filter(key => this.DomainValues[key]);
+    this.o.Domains=selectedCheckboxes
+    this.user.add(this.o);
+    
+  }

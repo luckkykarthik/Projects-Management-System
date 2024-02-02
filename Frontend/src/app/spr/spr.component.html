@@ -1,0 +1,179 @@
+<!-- <div *ngIf="isProjectAccepted; else display" class="success-container">
+  <div class="success-icon-container">
+    <span class="success-icon">&#x2714;</span> 
+  </div>
+  <div class="success-text">Congrats, your request has been accepted!</div>
+  <div class="container project-info">
+    <p>
+      <strong>We are thrilled to inform you that your project request has been accepted.</strong>
+    </p>
+    <h3>Click to add Github link of Project</h3>
+    <div class="github-input-container">
+      <input type="text" placeholder="Enter Github link here" class="github-input">
+      <button type="button" class="btn btn-success" (click)="addGithubLink()">Add</button>
+    </div>
+    <p class="extra-info">You can now start working on your project. If you have any questions or need further assistance, please feel free to contact our support team.</p>
+    <div class="project-image">
+  
+      <img src="project_image.jpg" alt="Project Image">
+    </div>
+  </div>
+</div> -->
+
+
+<div>
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-wrapper">
+      <div class="loading-animation"></div>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <!-- Assume that the 'display' template is defined elsewhere in the code -->
+
+<div *ngIf="isProjectAccepted; else display" >
+  <div class="success-message" >
+    <!-- <span class="success-icon">&#x2714;</span> Unicode for Checkmark (✔) -->
+    <span class="success-text"><img class="set" src="assets/tick.png" alt="Project Image">  Congrats, your request has been accepted!</span>
+  </div>
+  
+  <div class="container text-center">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <p>
+          <strong>We are thrilled to inform you that your project request has been accepted.</strong>
+        </p>
+        <div class="project-details">
+          <div class="row">
+            <span class="label">Project ID:</span>
+            <span class="value">{{projectDetails.id}}</span>
+          </div>
+          <div class="row">
+            <span class="label">Project Guide:</span>
+            <span class="value">{{projectDetails.facultyname}}</span>
+          </div>
+          <div class="row">
+            <span class="label">Project Title:</span>
+            <span class="value">{{projectDetails.title}}</span>
+          </div>
+          <div class="row">
+            <span class="label">Project Description:</span>
+            <span class="value">{{projectDetails.description}}</span>
+          </div>
+        </div>
+        <br>
+        <h3>Click to add Github link of Project</h3>
+        <div class="github-input-container">
+          <form #f="ngForm">
+            <p class="error" *ngIf="updaterror">Cannot update with empty link</p>
+            <p class="done" *ngIf="done">Updated Successfully.....</p>
+            <input type="text" placeholder="Enter Github link here" class="form-control" name="github" 
+             [(ngModel)]="githublink" #link="ngModel" pattern="^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/?$">
+             <div *ngIf="link.errors?.['pattern']">
+              <div class="error" *ngIf="link.touched && link.invalid">Enter Valid githublink.......</div>
+             </div>
+          <button type="sumit" class="btn btn-success mt-3" (click)="update()" [disabled]="f.invalid">Update</button>
+          </form>
+        </div>
+        <p class="extra-info mt-4">You can now start working on your project. If you have any questions or need further assistance, please feel free to contact our support team.</p>
+        <div class="mt-4">
+          <!-- Add an image related to the project or use a relevant illustration -->
+          <img src="assets/projectimage.jpg" alt="Project Image" class="img-fluid project-image">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+</div>
+
+    
+    <!-- <div class="alert alert-success container">
+      <strong>Project Request has been accepted</strong>
+    </div> -->
+    <ng-template #display>
+      <div class="alert alert-success" role="alert" *ngIf="exists">
+        <strong>Request already Sent</strong>
+      </div>
+      <div class="container" *ngIf="!loading && !check && !registrationSubmitted">
+          <h2>Project Registration Form</h2>
+          <form #f="ngForm" (ngSubmit)="registerProject()">
+            <div class="form-group">
+              <label for="id">ID:</label>
+              <input type="text" id="id" name="id" class="form-control" [(ngModel)]="project.studentid" disabled>
+            </div>
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" class="form-control" [(ngModel)]="project.studentname" disabled="">
+            </div>
+            <div class="form-group">
+              <label for="title">Project Title:</label>
+              <input type="text" id="title" name="title" class="form-control" [(ngModel)]="project.title" #title="ngModel" required
+              [ngClass]="{'is-invalid': title.touched && title.invalid}" minlength="5" maxlength="30">
+              <div class="error" *ngIf="title.touched && title.invalid">
+                <div *ngIf="title.errors?.['required']">Title is required</div>
+                <div *ngIf="title.errors?.['minlength']">Atleast 5 characters.....</div>
+              </div>
+            </div>
+            <!-- <div *ngIf="title.errors?.['minlength']">
+              <div class="error" *ngIf="title.touched && title.invalid">Atleast 5 characters.....</div>
+             </div> -->
+            <div class="form-group">
+              <label for="description">Project Description:</label>
+              <textarea id="description" name="description" class="form-control" [(ngModel)]="project.description"
+              #des="ngModel" required
+              [ngClass]="{'is-invalid': des.touched && des.invalid}" minlength="10"></textarea>
+              <div class="error" *ngIf="des.touched && des.invalid">
+                <div *ngIf="des.errors?.['required']">Description is required</div>
+                <div *ngIf="des.errors?.['minlength'] ||  des.errors?.['required']">Atleast 10 characters.....</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="areaOfInterest">Area of Interest:</label>
+              <select id="areaOfInterest" name="areaOfInterest" class="form-control" [(ngModel)]="project.aod" required>
+                <option value="WEB">WEB</option>
+                <option value="MAD">MAD</option>
+                <option value="NS">NS</option>
+                <option value="ML">ML</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="faculty">Faculty:</label>
+              <select id="faculty" name="faculty" class="form-control" [(ngModel)]="project.faculty" required>
+                <option value="Ratna Kumari">Ratna Kumari</option>
+                <option value="Vinod Kumar">Vinod Kumar</option>
+                <option value="satyanandaram">Satyanandaram</option>
+                <option value="Hima">Hima Bindhu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" [disabled]="f.invalid">Register</button>
+            </div>
+          </form>
+        </div>
+        <div class="containe mt-4" *ngIf="check || registrationSubmitted">
+          <div class="status-container fade-in-up p-4 rounded bg-light border border-primary">
+            <h2 class="text-primary mb-4">Project Registration Status</h2>
+            <p class="mb-3">
+              Your project registration request is submitted and waiting for teacher action.
+            </p>
+            <p class="thank-you mb-3">
+              Thank you for your submission. Please wait for further updates from the teacher.
+            </p>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped bg-primary"
+                role="progressbar"
+                [style.width.%]="50"
+                aria-valuenow="50"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                Pending
+              </div>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+      
+</div>
